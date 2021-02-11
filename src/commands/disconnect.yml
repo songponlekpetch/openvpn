@@ -1,0 +1,9 @@
+description: Disconnect from OpenVPN
+steps:
+  - run:
+      name: Disconnect from OpenVPN
+      command: sudo killall openvpn || true
+      when: always
+  - run:
+      name: remove OpenVPN config
+      command: sudo rm config.ovpn
