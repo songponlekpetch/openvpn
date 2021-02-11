@@ -6,8 +6,26 @@ description: >
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.2.3
+    openvpn: songponlekpetch/openvpn@0.0.1
   workflows:
-    use-my-orb:
+    vpn:
       jobs:
-        - <orb-name>/<job-name>
+        - build:
+            context: vpn
+  jobs:
+    build:
+      machine:
+        image: ubuntu-1604:202004-01
+      steps:
+        - openvpn/install
+        - openvpn/connect:
+            config: VPN_CLIENT_CONFIG
+            username: VPN_USERNAME
+            password: VPN_PASSWORD
+        - run:
+            name: Run commands in our infrastructure
+            command: |
+              # A command
+              # Another command
+        - openvpn/disconnect
+
