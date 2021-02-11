@@ -19,7 +19,6 @@ parameters:
 steps:
   - run:
       name: VPN Setup
-      background: true
       command: |
         phone_home=$(netstat -an | grep ':22 .*ESTABLISHED' | head -n1 | awk '{ split($5, a, ":"); print a[1] }')
         echo $phone_home
